@@ -30,7 +30,6 @@ export default function StockData() {
         }
       }
       )
-      .catch(error => console.log('error', error));
 
 
   }
