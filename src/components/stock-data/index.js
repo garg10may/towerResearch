@@ -11,6 +11,7 @@ export default function StockData() {
   const [close, setClose] = React.useState('');
   const [high, setHigh] = React.useState('');
   const [low, setLow] = React.useState('');
+  const [status, setStatus] = React.useState(-1);
 
   const fetchData = () => {
     const Url = 'https://jsonmock.hackerrank.com/api/stocks/?date=' + date;
@@ -19,11 +20,15 @@ export default function StockData() {
       .then(res => res.json())
       .then((result) => {
         console.log(result);
-        if (result.data) {
+        if (result.data[0]) {
+          setStatus(1);
           setOpen(result.data[0].open);
           setClose(result.data[0].close);
           setHigh(result.data[0].high);
           setLow(result.data[0].low);
+        }
+        else {
+          setStatus(0)
         }
       }
       )
@@ -49,13 +54,18 @@ export default function StockData() {
           id="submit-button"
           data-testid="submit-button">Search</button>
       </section>
-      <ul className="mt-50 slide-up-fade-in styled" id="stockData" data-testid="stock-data">
-        <li className="py-10">Open: {open}</li>
-        <li className="py-10">Close: {close}</li>
-        <li className="py-10">High: {high}</li>
-        <li className="py-10">Low: {low}</li>
-      </ul>
-      <div className="mt-50 slide-up-fade-in" id="no-result" data-testid="no-result">No Results Found</div>
+      {status==1 &&
+        <ul className="mt-50 slide-up-fade-in styled" id="stockData" data-testid="stock-data">
+          <li className="py-10">Open: {open}</li>
+          <li className="py-10">Close: {close}</li>
+          <li className="py-10">High: {high}</li>
+          <li className="py-10">Low: {low}</li>
+        </ul>
+      }
+      {
+        status == 0 &&
+        <div className="mt-50 slide-up-fade-in" id="no-result" data-testid="no-result">No Results Found</div>
+      }
     </div>
   );
 }
