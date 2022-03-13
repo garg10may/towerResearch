@@ -53,10 +53,10 @@ export default function StockData() {
       </section>
       {status==1 &&
         <ul className="mt-50 slide-up-fade-in styled" id="stockData" data-testid="stock-data">
-          <li className="py-10">Open: {open}</li>
-          <li className="py-10">Close: {close}</li>
-          <li className="py-10">High: {high}</li>
-          <li className="py-10">Low: {low}</li>
+          <li className="py-10">Open:{open}</li>
+          <li className="py-10">Close:{close}</li>
+          <li className="py-10">High:{high}</li>
+          <li className="py-10">Low:{low}</li>
         </ul>
       }
       {
