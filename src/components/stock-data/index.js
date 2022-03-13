@@ -15,11 +15,9 @@ export default function StockData() {
 
   const fetchData = () => {
     const Url = 'https://jsonmock.hackerrank.com/api/stocks/?date=' + date;
-    console.log(Url);
     fetch(Url)
       .then(res => res.json())
       .then((result) => {
-        console.log(result);
         if (result.data[0]) {
           setStatus(1);
           setOpen(result.data[0].open);
